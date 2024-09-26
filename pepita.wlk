@@ -7,11 +7,17 @@ object pepita {
 	var property position = game.origin()
 
 	method image() {
-		return if (self.estaEnElNido()) "pepita-grande.png" else "pepita.png"
+		return if (self.estaEnElNido()){
+			"pepita-grande.png"
+		}else if((self.position() == silvestre.position()) or self.estaCansada()){ 
+			"pepita-gris.png"
+		}else  "pepita.png"
+		
 	}
 
 	method come(comida) {
 		energia = energia + comida.energiaQueOtorga()
+		game.removeVisual(comida)
 	}
 
 	method vola(kms) {
